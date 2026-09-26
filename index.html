@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdullah Saami - 3D Room Portfolio</title>
+  </head>
+  <body class="boko-app-container light-theme">
+    <div class="experience">
+      <canvas class="experience-canvas"></canvas>
+    </div>
+
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="preloader-wrapper">
+        <div class="loading">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="toggle-bar">
+        <div class="sun-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+            <path
+              fill="currentColor"
+              d="M12 5Q11.575 5 11.288 4.712Q11 4.425 11 4V2Q11 1.575 11.288 1.287Q11.575 1 12 1Q12.425 1 12.713 1.287Q13 1.575 13 2V4Q13 4.425 12.713 4.712Q12.425 5 12 5ZM16.95 7.05Q16.675 6.775 16.675 6.362Q16.675 5.95 16.95 5.65L18.35 4.225Q18.65 3.925 19.062 3.925Q19.475 3.925 19.775 4.225Q20.05 4.5 20.05 4.925Q20.05 5.35 19.775 5.625L18.35 7.05Q18.075 7.325 17.65 7.325Q17.225 7.325 16.95 7.05ZM20 13Q19.575 13 19.288 12.712Q19 12.425 19 12Q19 11.575 19.288 11.287Q19.575 11 20 11H22Q22.425 11 22.712 11.287Q23 11.575 23 12Q23 12.425 22.712 12.712Q22.425 13 22 13ZM12 23Q11.575 23 11.288 22.712Q11 22.425 11 22V20Q11 19.575 11.288 19.288Q11.575 19 12 19Q12.425 19 12.713 19.288Q13 19.575 13 20V22Q13 22.425 12.713 22.712Q12.425 23 12 23ZM5.65 7.05 4.225 5.65Q3.925 5.35 3.925 4.925Q3.925 4.5 4.225 4.225Q4.5 3.95 4.925 3.95Q5.35 3.95 5.625 4.225L7.05 5.65Q7.325 5.925 7.325 6.35Q7.325 6.775 7.05 7.05Q6.75 7.325 6.35 7.325Q5.95 7.325 5.65 7.05ZM18.35 19.775 16.95 18.35Q16.675 18.05 16.675 17.638Q16.675 17.225 16.95 16.95Q17.225 16.675 17.638 16.675Q18.05 16.675 18.35 16.95L19.775 18.35Q20.075 18.625 20.062 19.05Q20.05 19.475 19.775 19.775Q19.475 20.075 19.05 20.075Q18.625 20.075 18.35 19.775ZM2 13Q1.575 13 1.288 12.712Q1 12.425 1 12Q1 11.575 1.288 11.287Q1.575 11 2 11H4Q4.425 11 4.713 11.287Q5 11.575 5 12Q5 12.425 4.713 12.712Q4.425 13 4 13ZM4.225 19.775Q3.95 19.5 3.95 19.075Q3.95 18.65 4.225 18.375L5.65 16.95Q5.925 16.675 6.338 16.675Q6.75 16.675 7.05 16.95Q7.35 17.25 7.35 17.663Q7.35 18.075 7.05 18.375L5.625 19.775Q5.35 20.075 4.925 20.075Q4.5 20.075 4.225 19.775ZM12 18Q9.5 18 7.75 16.25Q6 14.5 6 12Q6 9.5 7.75 7.75Q9.5 6 12 6Q14.5 6 16.25 7.75Q18 9.5 18 12Q18 14.5 16.25 16.25Q14.5 18 12 18ZM12 16Q13.65 16 14.825 14.825Q16 13.65 16 12Q16 10.35 14.825 9.175Q13.65 8 12 8Q10.35 8 9.175 9.175Q8 10.35 8 12Q8 13.65 9.175 14.825Q10.35 16 12 16Z"
+            />
+          </svg>
+        </div>
+        <button class="toggle-button" aria-label="Toggle Light/Dark Mode">
+          <div class="toggle-circle"></div>
+        </button>
+        <div class="moon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+            <path
+              fill="currentColor"
+              d="M12 21Q8.25 21 5.625 18.375Q3 15.75 3 12Q3 8.25 5.625 5.625Q8.25 3 12 3Q12.35 3 12.688 3.025Q13.025 3.05 13.35 3.1Q12.325 3.825 11.713 4.987Q11.1 6.15 11.1 7.5Q11.1 9.75 12.675 11.325Q14.25 12.9 16.5 12.9Q17.875 12.9 19.025 12.287Q20.175 11.675 20.9 10.65Q20.95 10.975 20.975 11.312Q21 11.65 21 12Q21 15.75 18.375 18.375Q15.75 21 12 21ZM12 19Q14.2 19 15.95 17.788Q17.7 16.575 18.5 14.625Q18 14.75 17.5 14.825Q17 14.9 16.5 14.9Q13.425 14.9 11.262 12.738Q9.1 10.575 9.1 7.5Q9.1 7 9.175 6.5Q9.25 6 9.375 5.5Q7.425 6.3 6.213 8.05Q5 9.8 5 12Q5 14.9 7.05 16.95Q9.1 19 12 19ZM11.75 12.25Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="page-wrapper">
+        <section class="hero">
+          <div class="hero-wrapper">
+            <div class="intro-text">Welcome to Abdullah Saami's Portfolio!</div>
+            <div class="arrow-svg-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                <path
+                  fill="currentColor"
+                  d="M12 14.95q-.2 0-.375-.063-.175-.062-.325-.212L6.675 10.05q-.275-.275-.262-.688.012-.412.287-.687.275-.275.7-.275.425 0 .7.275l3.9 3.9 3.925-3.925q.275-.275.688-.263.412.013.687.288.275.275.275.7 0 .425-.275.7l-4.6 4.6q-.15.15-.325.212-.175.063-.375.063Z"
+                />
+              </svg>
+            </div>
+
+            <div class="hero-main">
+              <h1 class="hero-main-title">Abdullah Saami</h1>
+              <p class="hero-main-description">
+                Operations &amp; Workflow | Full Stack Dev
+              </p>
+            </div>
+
+            <div class="hero-second">
+              <p class="hero-second-subheading first-sub">AbdullahSaami</p>
+              <p class="hero-second-subheading second-sub">Portfolio</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="first-move section-margin"></div>
+
+        <!-- 01 ABOUT ME -->
+        <section class="first-section section left">
+          <div class="progress-wrapper progress-bar-wrapper-left">
+            <div class="progress-bar"></div>
+          </div>
+
+          <div class="section-intro-wrapper">
+            <h1 class="section-title">
+              <span class="section-title-text">About Me</span>
+              <div class="section-title-decoration styleOne"></div>
+              <div class="section-title-decoration styleTwo"></div>
+              <div class="section-title-decoration styleThree"></div>
+            </h1>
+            <span class="section-number">01</span>
+          </div>
+
+          <div class="section-detail-wrapper">
+            <div class="profile-card">
+              <img
+                src="/images/abdullah-saami.jpg"
+                alt="Abdullah Saami"
+                class="profile-portrait"
+              />
+              <div class="profile-card-meta">
+                <h2>Abdullah Saami</h2>
+                <p class="profile-headline">
+                  Aspiring Director of Operations | Workflow Execution &amp;
+                  Process Optimization | Structuring Messy Workflows | Project
+                  Planning | Analytical Data Skills &amp; Decision-Making |
+                  AI-Assisted Full Stack Developer
+                </p>
+                <p class="profile-location">Bhatkal, Karnataka, India</p>
+                <div class="profile-social-pills">
+                  <a
+                    href="https://www.linkedin.com/in/abdullahsaami"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mini-social-link"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href="https://www.instagram.com/saamisada/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="mini-social-link"
+                  >
+                    Instagram (@saamisada)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="section-heading">Who I Am</h3>
+            <p class="section-text">
+              I focus on understanding how tasks, projects, and systems move
+              from start to finish. I enjoy working on planning, organizing
+              workflows, and finding practical ways to make processes clearer
+              and more efficient.
+            </p>
+            <p class="section-text">
+              I'm particularly interested in operations, where structure,
+              coordination, and execution come together. I like breaking down
+              messy or unclear problems into manageable steps and ensuring
+              things actually get done.
+            </p>
+            <p class="section-text">
+              Currently, I'm building my skills in data analysis, workflow
+              management, and operational thinking while working on real-world
+              projects and learning how systems function in practice.
+            </p>
+
+            <h3 class="section-heading">Core Areas of Focus</h3>
+            <div class="focus-cards-grid">
+              <div class="focus-card">
+                <h4>Project Planning &amp; Execution</h4>
+                <p>
+                  Structuring tasks, timelines, and deliverables from start to
+                  finish.
+                </p>
+              </div>
+              <div class="focus-card">
+                <h4>Workflow Optimization</h4>
+                <p>
+                  Improving clarity, coordination, and operational efficiency
+                  across teams.
+                </p>
+              </div>
+              <div class="focus-card">
+                <h4>Data Analysis &amp; Decision-Making</h4>
+                <p>
+                  Using analytical skills and structured metrics to drive
+                  practical decisions.
+                </p>
+              </div>
+              <div class="focus-card">
+                <h4>AI-Assisted Full Stack Developer</h4>
+                <p>
+                  Building production Android &amp; web systems. Open for
+                  project collaboration and learning.
+                </p>
+              </div>
+            </div>
+
+            <h3 class="section-heading">
+              Verified Education &amp; Official Marks
+            </h3>
+
+            <!-- B.E. -->
+            <div class="edu-block">
+              <div class="edu-top">
+                <h4>B.E. in CSE (Data Science)</h4>
+                <span class="edu-pill">2026 - 2030 (Pursuing)</span>
+              </div>
+              <p class="edu-school">
+                Anjuman Institute of Technology and Management (AITM), Bhatkal
+              </p>
+            </div>
+
+            <!-- II PUC (2026) -->
+            <div class="edu-block">
+              <div class="edu-top">
+                <h4>Pre-University Exam (II PUC - 2026)</h4>
+                <span class="edu-pill">526 / 600 (87.67% | DISTINCTION)</span>
+              </div>
+              <p class="edu-school">
+                Ali Public PU College, Firdose Nagar, Jamiyabad Road, Heble,
+                Bhatkal (Code: QQ0130)
+              </p>
+              <p class="edu-reg">
+                Reg No: <strong>20269627142</strong> | Cert No:
+                <strong>26487619</strong> | Result Date:
+                <strong>09-04-2026</strong>
+              </p>
+              <div class="marks-table-wrap">
+                <table class="marks-table">
+                  <thead>
+                    <tr>
+                      <th>Subject</th>
+                      <th>Theory</th>
+                      <th>Int/Prac</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>English</td>
+                      <td>71/80</td>
+                      <td>18/20</td>
+                      <td><strong>89/100</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Urdu</td>
+                      <td>76/80</td>
+                      <td>20/20</td>
+                      <td><strong>96/100</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Physics</td>
+                      <td>52/70</td>
+                      <td>30/30</td>
+                      <td><strong>82/100</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Chemistry</td>
+                      <td>49/70</td>
+                      <td>30/30</td>
+                      <td><strong>79/100</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Mathematics</td>
+                      <td>66/80</td>
+                      <td>15/20</td>
+                      <td><strong>81/100</strong></td>
+                    </tr>
+                    <tr class="row-highlight">
+                      <td>Computer Science</td>
+                      <td>69/70</td>
+                      <td>30/30</td>
+                      <td><strong>99/100</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- SSLC (2024) -->
+            <div class="edu-block">
+              <div class="edu-top">
+                <h4>S.S.L.C. (Class X State Board - 2024)</h4>
+                <span class="edu-pill">579 / 625 (92.64% | CGA: A+)</span>
+              </div>
+              <p class="edu-school">
+                Ali Public English Medium High School, Bhatkal (School Code:
+                PP0194)
+              </p>
+              <p class="edu-reg">
+                Reg No: <strong>20240090581</strong> | Cert No:
+                <strong>24537438</strong> | Internal: <strong>125/125</strong> +
+                External: <strong>454/500</strong>
+              </p>
+              <div class="marks-table-wrap">
+                <table class="marks-table">
+                  <thead>
+                    <tr>
+                      <th>Subject</th>
+                      <th>Ext+Int</th>
+                      <th>Total</th>
+                      <th>Grade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>English (1st)</td>
+                      <td>90+25</td>
+                      <td><strong>115/125</strong></td>
+                      <td>A+</td>
+                    </tr>
+                    <tr class="row-highlight">
+                      <td>Kannada (2nd)</td>
+                      <td>80+20</td>
+                      <td><strong>100/100</strong></td>
+                      <td>A+</td>
+                    </tr>
+                    <tr class="row-highlight">
+                      <td>Urdu (3rd)</td>
+                      <td>80+20</td>
+                      <td><strong>100/100</strong></td>
+                      <td>A+</td>
+                    </tr>
+                    <tr>
+                      <td>Mathematics</td>
+                      <td>65+20</td>
+                      <td><strong>85/100</strong></td>
+                      <td>A</td>
+                    </tr>
+                    <tr>
+                      <td>Science</td>
+                      <td>70+20</td>
+                      <td><strong>90/100</strong></td>
+                      <td>A+</td>
+                    </tr>
+                    <tr>
+                      <td>Social Science</td>
+                      <td>69+20</td>
+                      <td><strong>89/100</strong></td>
+                      <td>A</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <h3 class="section-heading">Academic &amp; Leadership Timeline</h3>
+            <div class="edu-block">
+              <div class="edu-top">
+                <h4>2026 - 2030 | B.E. in CSE (Data Science)</h4>
+                <span class="edu-pill">AITM, Bhatkal</span>
+              </div>
+              <p class="edu-school">
+                Pursuing Bachelor of Engineering in Computer Science &amp;
+                Engineering (Data Science) at Anjuman Institute of Technology
+                and Management (AITM), Bhatkal.
+              </p>
+            </div>
+            <div class="edu-block">
+              <div class="edu-top">
+                <h4>2025 - 2026 (Second PUC) | President of Student Council</h4>
+                <span class="edu-pill">Ali Public Pre-University College</span>
+              </div>
+              <p class="edu-school">
+                Served as <strong>President of the Student Council</strong> at
+                <strong>Ali Public Pre-University College, Bhatkal</strong>;
+                directed operations as
+                <strong>Student Event Manager - INSPIRA 2K25</strong>; won the
+                <strong>NRL 2025 Community Champions Award</strong> with
+                <strong>Team VoltEdge (ID: 007)</strong> at IIT Bombay; and
+                graduated II PUC with
+                <strong>Distinction (526 / 600 | 87.67%)</strong>.
+              </p>
+            </div>
+            <div class="edu-block">
+              <div class="edu-top">
+                <h4>2023 - 2024 (Grade 10 / S.S.L.C.) | Assistant Head Boy</h4>
+                <span class="edu-pill">Ali Public School</span>
+              </div>
+              <p class="edu-school">
+                Served as <strong>Assistant Head Boy</strong> during Grade 10 at
+                <strong>Ali Public School, Bhatkal</strong> and graduated
+                S.S.L.C. State Board with
+                <strong>92.64% (579 / 625 | CGA: A+)</strong>.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="second-move section-margin"></div>
+
+        <!-- 02 MY WORK -->
+        <section class="second-section section right">
+          <div class="progress-wrapper progress-bar-wrapper-right">
+            <div class="progress-bar blue-background"></div>
+          </div>
+
+          <div class="section-intro-wrapper blue-text blue-border">
+            <h1 class="section-title blue-text blue-border">
+              <span class="section-title-text blue-text">My Work</span>
+              <div class="section-title-decoration styleOne blue-border"></div>
+              <div class="section-title-decoration styleTwo blue-border"></div>
+              <div
+                class="section-title-decoration styleThree blue-background blue-border"
+              ></div>
+            </h1>
+            <span class="section-number blue-text">02</span>
+          </div>
+
+          <div class="section-detail-wrapper">
+            <!-- Project 1: Team VoltEdge -->
+            <div class="work-card">
+              <div class="work-card-badge">
+                NATIONAL ROBOTICS LEAGUE (NRL 2025) | IIT BOMBAY
+              </div>
+              <h3 class="section-heading">
+                Team VoltEdge (Team 007) - Community Champions Winner
+              </h3>
+              <p class="section-text">
+                Represented Ali Public School, Bhatkal as Team ID
+                <strong>007</strong> at the National Robotics League (NRL 2025)
+                National Finals at IIT Bombay, Powai under The Innovation Story.
+                Won the <strong>Community Champions Award</strong> and earned
+                nominations for the <strong>Influenstar</strong> and
+                <strong>Brand Builder</strong> awards.
+              </p>
+              <ul class="work-list">
+                <li>
+                  <strong>60-Page Engineering Portfolio Dossier:</strong>
+                  Authored and compiled the complete 60-page Engineering
+                  Portfolio documenting CAD iterations, failure analysis, and
+                  outreach - personally reviewed and commended by
+                  <strong>Mr. Samir Kumar (Country Manager, Amazon India)</strong>.
+                </li>
+                <li>
+                  <strong>Firmware &amp; Control System:</strong> Configured the
+                  Arduino IDE environment, control logic, and initial software
+                  architecture for the custom 4WD differential-drive robot
+                  (<strong>EdgeBot v1.0</strong>).
+                </li>
+                <li>
+                  <strong>Pit Operations &amp; Web Platform:</strong> Led pit
+                  maintenance during live qualification matches, produced the
+                  official NRL Team Reveal Video, and built the official team
+                  portal.
+                </li>
+              </ul>
+              <div class="work-links">
+                <a
+                  href="https://voltedge007.pages.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="work-btn"
+                >
+                  Visit voltedge007.pages.dev
+                </a>
+                <a
+                  href="https://voltedge007.pages.dev/VoltEdge_Engineering_Portfolio_NRL2025.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="work-btn secondary"
+                >
+                  60-Page Engineering Portfolio (PDF)
+                </a>
+                <a
+                  href="https://youtube.com/shorts/BfBjaulKMkI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="work-btn secondary"
+                >
+                  NRL Reveal Video
+                </a>
+              </div>
+            </div>
+
+            <!-- Project 2: SplitPayMe -->
+            <div class="work-card">
+              <div class="work-card-badge">
+                PUBLISHED GOOGLE PLAY STORE ANDROID APP
+              </div>
+              <h3 class="section-heading">
+                SplitPayMe - Smart Group Expense &amp; Settlement Manager
+              </h3>
+              <p class="section-text">
+                Published Android application
+                (<code>com.saamio.splitpayme</code>) built to eliminate complex
+                group math, messy spreadsheets, and awkward IOU tracking for
+                trips, roommates, and events.
+              </p>
+              <ul class="work-list">
+                <li>
+                  <strong>Smart Split Calculator:</strong> Built-in tactile
+                  calculator with haptic feedback for instant equal,
+                  exact-amount, or percentage-based bill splitting.
+                </li>
+                <li>
+                  <strong>Optimized Settlement Engine:</strong>
+                  Debt-simplification algorithm that minimizes total
+                  transactions needed to settle group balances.
+                </li>
+                <li>
+                  <strong>Offline-First Architecture:</strong> 100% local Room
+                  SQLite persistence with zero mandatory cloud sign-up, Dark
+                  Mode, and instant receipt summary sharing.
+                </li>
+              </ul>
+              <div class="work-links">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.saamio.splitpayme&hl=en_US&pli=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="work-btn"
+                >
+                  View SplitPayMe on Google Play
+                </a>
+              </div>
+            </div>
+
+            <!-- Project 3: Operations & Leadership -->
+            <div class="work-card">
+              <div class="work-card-badge">
+                OPERATIONS, WORKFLOW EXECUTION &amp; LEADERSHIP TIMELINE
+              </div>
+              <h3 class="section-heading">
+                Student Council President, INSPIRA 2K25 Event Manager &amp;
+                Assistant Head Boy
+              </h3>
+              <p class="section-text">
+                Directed end-to-end event workflows, stage schedules, and
+                student governance across both pre-university and high school
+                academic years in Bhatkal.
+              </p>
+              <ul class="work-list">
+                <li>
+                  <strong>
+                    2025 - 2026 (Second PUC) - President of Student Council:
+                  </strong>
+                  Led student governance and institutional initiatives at
+                  <strong>Ali Public Pre-University College, Bhatkal</strong>.
+                </li>
+                <li>
+                  <strong>2025 - 2026 - INSPIRA 2K25 Event Manager:</strong>
+                  Designed master run-of-show timelines, resource checklists,
+                  volunteer teams, and judge scoring workflows.
+                </li>
+                <li>
+                  <strong>2023 - 2024 (Grade 10) - Assistant Head Boy:</strong>
+                  Coordinated student houses, discipline workflows, and peer
+                  leadership initiatives at
+                  <strong>Ali Public School, Bhatkal</strong>.
+                </li>
+                <li>
+                  <strong>AI-Assisted Full Stack Workflows:</strong> Combining
+                  structured operational planning with modern web and mobile
+                  engineering to ship reliable digital products.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <div class="third-move section-margin"></div>
+
+        <!-- 03 CONTACT ME -->
+        <section class="third-section section left">
+          <div class="progress-wrapper progress-bar-wrapper-left">
+            <div class="progress-bar green-background"></div>
+          </div>
+
+          <div class="section-intro-wrapper green-text green-border">
+            <h1 class="section-title green-text green-border">
+              <span class="section-title-text green-text">Contact Me</span>
+              <div class="section-title-decoration styleOne green-border"></div>
+              <div class="section-title-decoration styleTwo green-border"></div>
+              <div
+                class="section-title-decoration styleThree green-background green-border"
+              ></div>
+            </h1>
+            <span class="section-number green-text">03</span>
+          </div>
+
+          <div class="section-detail-wrapper">
+            <h3 class="section-heading">Send a Message</h3>
+            <p class="section-text">
+              Fill out the form below and click <strong>Send Message</strong> to
+              open your email app with an automatically formatted template to
+              <strong>getsaami@gmail.com</strong>.
+            </p>
+
+            <form class="boko-contact-form" id="boko-contact-form">
+              <div class="boko-form-row">
+                <div class="boko-field">
+                  <label for="boko-name">Your Name</label>
+                  <input
+                    type="text"
+                    id="boko-name"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+                <div class="boko-field">
+                  <label for="boko-email">Your Email</label>
+                  <input
+                    type="email"
+                    id="boko-email"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="boko-field">
+                <label for="boko-subject">Subject Option</label>
+                <select id="boko-subject">
+                  <option value="Project Collaboration">
+                    Project Collaboration
+                  </option>
+                  <option value="General Inquiry / Networking">
+                    General Inquiry / Networking
+                  </option>
+                  <option value="About My Work">About My Work</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div
+                class="boko-field"
+                id="boko-custom-subject-wrap"
+                style="display: none"
+              >
+                <label for="boko-custom-subject">Custom Subject Line</label>
+                <input
+                  type="text"
+                  id="boko-custom-subject"
+                  placeholder="Write your custom subject..."
+                />
+              </div>
+
+              <div class="boko-field">
+                <label for="boko-message">Your Message</label>
+                <textarea
+                  id="boko-message"
+                  rows="4"
+                  placeholder="Write your message here..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="work-btn boko-submit-btn">
+                Send Message
+              </button>
+            </form>
+
+            <h3 class="section-heading">Social &amp; Portfolio Links</h3>
+            <div class="contact-links-stack">
+              <a
+                href="https://www.linkedin.com/in/abdullahsaami"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-card-link"
+              >
+                <span class="contact-label">LINKEDIN</span>
+                <span class="contact-val">linkedin.com/in/abdullahsaami</span>
+              </a>
+              <a
+                href="https://www.instagram.com/saamisada/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-card-link"
+              >
+                <span class="contact-label">INSTAGRAM</span>
+                <span class="contact-val">instagram.com/saamisada</span>
+              </a>
+              <a href="mailto:getsaami@gmail.com" class="contact-card-link">
+                <span class="contact-label">EMAIL</span>
+                <span class="contact-val">getsaami@gmail.com</span>
+              </a>
+              <a
+                href="https://voltedge007.pages.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-card-link"
+              >
+                <span class="contact-label">TEAM VOLTEDGE 007</span>
+                <span class="contact-val">voltedge007.pages.dev</span>
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.saamio.splitpayme&hl=en_US&pli=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-card-link"
+              >
+                <span class="contact-label">GOOGLE PLAY STORE</span>
+                <span class="contact-val">
+                  SplitPayMe (com.saamio.splitpayme)
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
